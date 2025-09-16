@@ -1,0 +1,575 @@
+/**
+ * Professional Stylesheet
+ *
+ * Description: A refactored and enhanced stylesheet for a modern personal portfolio.
+ * Version: 2.0
+ * Author: Gemini AI
+ * Last Updated: 2025-09-16
+ */
+
+/*=============================================
+=            Google Fonts Import              =
+=============================================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/*=============================================
+=              CSS Variables                  =
+=============================================*/
+:root {
+    /* Color Palette */
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary-color: #ec4899;
+    --accent-color: #14b8a6;
+
+    /* Background Colors */
+    --background-light: #f5f7fa;
+    --background-dark: #0f172a;
+    --surface-light: rgba(255, 255, 255, 0.85);
+    --surface-dark: rgba(30, 41, 59, 0.9);
+
+    /* Text Colors */
+    --text-primary-light: #1e293b;
+    --text-secondary-light: #64748b;
+    --text-primary-dark: #f8fafc;
+    --text-secondary-dark: #94a3b8;
+
+    /* Utility Colors */
+    --border-color: #e2e8f0;
+    --white: #ffffff;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Typography */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Inter', sans-serif;
+}
+
+
+/*=============================================
+=            General Reset & Setup            =
+=============================================*/
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+/*=============================================
+=                 Body Styling                =
+=============================================*/
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.7;
+    color: var(--text-primary-light);
+    background: var(--background-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animated background gradient */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+    animation: pulseBackground 15s infinite alternate;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+    border: 2px solid var(--background-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+
+/*=============================================
+=            Layout & Structure               =
+=============================================*/
+.main-header {
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: var(--surface-light);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+main {
+    flex: 1;
+    /* Ensures main content takes up available space */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    animation: fadeInUp 0.8s var(--transition-normal);
+}
+
+.main-footer {
+    background: var(--text-primary-light);
+    color: var(--text-primary-dark);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+}
+
+.social-links a {
+    color: var(--white);
+    font-size: 1.5rem;
+    transition: all var(--transition-fast);
+}
+
+.social-links a:hover {
+    color: var(--primary-light);
+    transform: translateY(-3px);
+}
+
+/*=============================================
+=                Typography                   =
+=============================================*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+}
+
+h1.page-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: slideInFromTop 0.6s var(--transition-normal);
+}
+
+h2 {
+    font-size: 2.25rem;
+    color: var(--primary-dark);
+    margin: 2.5rem 0 1.5rem;
+    border-bottom: 3px solid var(--primary-light);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+h3 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin: 1.5rem 0 1rem;
+}
+
+p {
+    color: var(--text-secondary-light);
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    position: relative;
+    transition: color var(--transition-normal);
+    font-weight: 500;
+}
+
+a:hover,
+a:focus {
+    color: var(--primary-dark);
+    outline: none;
+}
+
+
+/*=============================================
+=                 Components                  =
+=============================================*/
+
+/*---------- Main Navigation Links ----------*/
+.main-nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width var(--transition-normal);
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/*---------- Hero Section (Index Page) ----------*/
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 2rem auto;
+    border: 5px solid var(--white);
+    box-shadow: var(--shadow-xl);
+    transition: transform var(--transition-normal);
+}
+
+.hero-image:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.hero .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.hero .hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary-light);
+    margin-bottom: 2rem;
+    font-family: var(--font-primary);
+}
+
+.page-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/*---------- Cards ----------*/
+.card {
+    background: var(--surface-light);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-link {
+    display: block;
+    height: 100%;
+}
+
+.card-link h2 {
+    margin-top: 0;
+    font-size: 1.75rem;
+    border: none;
+}
+
+.card-link p {
+    font-size: 1rem;
+}
+
+/*---------- Grid Layout for Cards ----------*/
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card img,
+.card video,
+.card audio {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 1rem;
+    display: block;
+}
+
+/*---------- Lists (About Page) ----------*/
+.info-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.info-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+
+/*---------- Forms (Contact Page) ----------*/
+form {
+    background: var(--surface-light);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    color: var(--text-primary-light);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all var(--transition-normal);
+    background: var(--white);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+/*---------- Buttons ----------*/
+.btn {
+    display: inline-block;
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow-md);
+}
+
+.btn:hover,
+.btn:focus {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    outline: none;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, var(--secondary-color), #f87171);
+}
+
+.btn-reset {
+    background: linear-gradient(135deg, var(--accent-color), #4ade80);
+}
+
+/*---------- HR Separator ----------*/
+hr {
+    border: none;
+    height: 1px;
+    background: var(--border-color);
+    margin: 3rem 0;
+}
+
+
+/*=============================================
+=                 Animations                  =
+=============================================*/
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseBackground {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+}
+
+/*=============================================
+=            Responsive Design                =
+=============================================*/
+@media (max-width: 768px) {
+    body {
+        font-size: 0.95rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .main-header {
+        padding: 1rem;
+    }
+
+    h1.page-title {
+        font-size: 2.25rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

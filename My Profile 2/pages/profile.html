@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Khalid AL-Shami - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Modern CSS Variables */
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-muted: #6b7280;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #ff6b6b;
+            --accent-tertiary: #4ecdc4;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-warm: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.3);
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --border-radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* Floating particles */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.1), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(0, 212, 255, 0.2), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255, 107, 107, 0.15), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(78, 205, 196, 0.1), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: float 20s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-100px);
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-primary);
+        }
+
+        /* Profile Image */
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 3rem auto;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        /* Media Elements */
+        .media-container {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .media-container audio,
+        .media-container video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                position: static;
+                transform: none;
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .contact-form {
+                padding: 2rem;
+                margin: 2rem 1rem;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gradient-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#loves">My Loves</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ahmed Khalid AL-Shami</h1>
+            <p class="subtitle">Software Engineer & Competitive Programmer</p>
+            <p class="description">
+                Welcome to my digital space! I'm a passionate Software Engineer with a deep love for
+                Competitive Programming, crafting elegant solutions to complex problems.
+            </p>
+
+            <div class="profile-image">
+                <img src="images/Ahmed Khalid.png" alt="Ahmed Khalid AL-Shami" />
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#about" class="btn btn-primary">Explore My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
+
+        <div class="cards-grid">
+            <div class="card fade-in-up">
+                <h3>My Interests</h3>
+                <ul>
+                    <li>Competitive Programming</li>
+                    <li>Software Development</li>
+                    <li>Problem Solving</li>
+                    <li>Backend Development</li>
+                </ul>
+            </div>
+
+            <div class="card fade-in-up">
+                <h3>My Hobbies</h3>
+                <ul>
+                    <li>Coding Challenges</li>
+                    <li>Playing Chess</li>
+                    <li>Cooking</li>
+                </ul>
+            </div>
+
+            <div class="card fade-in-up">
+                <h3>My Education</h3>
+                <p>I study Computer Science at <strong>BFCAI</strong>, Benha University, where I'm developing my skills
+                    in software engineering and computational thinking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Loves Section -->
+    <section id="loves" class="section">
+        <h2>My Loves</h2>
+
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=300&fit=crop"
+                    alt="Nature">
+                <div class="overlay">
+                    <h4>I Love Nature</h4>
+                    <p>Finding peace and inspiration in the natural world.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500&h=300&fit=crop"
+                    alt="Family">
+                <div class="overlay">
+                    <h4>I Love My Family</h4>
+                    <p>Family is the foundation of everything I do.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=500&h=300&fit=crop"
+                    alt="Chess">
+                <div class="overlay">
+                    <h4>I Love Chess</h4>
+                    <p>Strategic thinking and intellectual challenges.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Islamic Values</h3>
+            <p>I am a Muslim and I find strength and guidance in my faith. My love for Allah, the Quran, and the Prophet
+                Muhammad (peace be upon him) shapes my daily life and values.</p>
+
+            <div class="media-container">
+                <h4>Quran Recitation</h4>
+                <audio controls>
+                    <source src="../sounds/quran.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="media-container">
+                <h4>Quran Video</h4>
+                <video controls>
+                    <source src="../videos/video_quran.mp4" type="video/mp4">
+                    Your browser does not support the video element.
+                </video>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=500&h=300&fit=crop"
+                    alt="Islamic Calligraphy">
+                <div class="overlay">
+                    <h4>Blessings upon the Prophet</h4>
+                    <p>May Allah bless our Prophet Muhammad (PBUH).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>تواصل معي</h2>
+
+        <div class="social-links">
+            <a href="https://github.com/AK-Elshamy" target="_blank" class="social-link">
+                GitHub
+            </a>
+            <a href="https://codeforces.com/profile/El-Shamy" target="_blank" class="social-link">
+                Codeforces
+            </a>
+            <a href="mailto:ahmed.khalid.elshamy37@gmail.com" target="_blank" class="social-link">
+                Email
+            </a>
+            <a href="https://www.linkedin.com/in/a-elshamy" target="_blank" class="social-link">
+                LinkedIn
+            </a>
+            <a href="https://twitter.com/El_shamy_" target="_blank" class="social-link">
+                X (Twitter)
+            </a>
+        </div>
+
+        <form class="contact-form" action="#" dir="rtl">
+            <div class="form-group">
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" placeholder="ادخل اسمك" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" placeholder="ادخل بريدك الإلكتروني" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">الرسالة:</label>
+                <textarea id="message" placeholder="ادخل رسالتك هنا..." required></textarea>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary">إرسال</button>
+                <button type="reset" class="btn btn-secondary">إعادة تعيين</button>
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>
